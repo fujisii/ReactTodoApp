@@ -53,6 +53,15 @@
         );
       }
 
+      function TodoForm() {
+        return (
+          <form>
+            <input type="text"/>
+            <input type="submit" value="Add"/>
+          </form>
+        )
+      }
+
       class App extends React.Component {
         constructor() {
           super();
@@ -101,6 +110,7 @@
                 checkTodo={this.checkTodo}
                 deleteTodo={this.deleteTodo}
               />
+              <TodoForm/>
             </div>
           );
         }
