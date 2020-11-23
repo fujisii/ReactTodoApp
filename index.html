@@ -31,7 +31,7 @@
 
       function TodoItem(props) {
         return (
-          <li key={props.todo.id}>
+          <li>
             <label>
               <input type="checkbox"
                 checked={props.todo.isDone}
@@ -157,6 +157,21 @@
         updateItem(e) {
           this.setState({
             item: e.target.value
+          });
+        }
+
+        // コンポーネントが再描画されたタイミングで呼び出されるメソッド。
+        // このメソッド内では再描画されたDOMにアクセスすることができます。
+        componentDidUpdate() {
+          localStorage.setItem('todos', JSON.stringify(this.state.todos));
+        }
+
+        // コンポーネントがマウント(配置)された直前に呼び出されるメソッド。
+        // 以下のように指定することで状態変化に応じた処理を行うことができます。
+        // このメソッド内では描画されたDOMにアクセスすることができます。
+        componentDidMount() {
+          this.setState({
+            todos: JSON.parse(localStorage.getItem('todos')) || []
           });
         }
 
